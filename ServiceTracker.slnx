@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ServiceTracker.Api/ServiceTracker.Api.csproj" />
+    <Project Path="src/ServiceTracker.Application/ServiceTracker.Application.csproj" />
+    <Project Path="src/ServiceTracker.Domain/ServiceTracker.Domain.csproj" />
+    <Project Path="src/ServiceTracker.Infrastructure/ServiceTracker.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ServiceTracker.IntegrationTest/ServiceTracker.IntegrationTest.csproj" />
+    <Project Path="tests/ServiceTracker.UnitTest/ServiceTracker.UnitTest.csproj" />
+  </Folder>
+</Solution>
