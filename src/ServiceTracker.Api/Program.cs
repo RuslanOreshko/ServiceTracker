@@ -1,10 +1,22 @@
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using ServiceTracker.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddProblemDetails();
 
 builder.Services.AddOpenApi();
+
+
+// Datebase connection
+builder.Services.AddDbContext<ServiceTrackerDbContext>(options =>
+{
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+    );
+});
+
 
 var app = builder.Build();
 

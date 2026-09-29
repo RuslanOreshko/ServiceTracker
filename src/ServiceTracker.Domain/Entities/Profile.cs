@@ -13,7 +13,7 @@ public class Profile
 
     public Profile(
         Guid userId,
-        string userName,
+        string username,
         string displayName,
         string? avatarUrl,
         string? bio
@@ -22,15 +22,15 @@ public class Profile
         if(userId == Guid.Empty)
             throw new ArgumentException("User ID cannot be empty.", nameof(userId));
 
-        if(string.IsNullOrWhiteSpace(userName))
-            throw new ArgumentException("Username cannot be empty.", nameof(userName));
+        if(string.IsNullOrWhiteSpace(username))
+            throw new ArgumentException("Username cannot be empty.", nameof(username));
 
         if(string.IsNullOrWhiteSpace(displayName))
             throw new ArgumentException("Display name cannot be empty.", nameof(displayName));
 
         Id = Guid.NewGuid();
         UserId = userId;
-        Username = userName;
+        Username = username;
         DisplayName = displayName;
         AvatarUrl = avatarUrl;
         Bio = bio; 
