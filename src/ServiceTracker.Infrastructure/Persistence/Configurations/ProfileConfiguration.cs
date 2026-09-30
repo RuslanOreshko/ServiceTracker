@@ -14,6 +14,11 @@ public class ProfileConfiguration : IEntityTypeConfiguration<Profile>
         builder.Property(x => x.UserId)
             .IsRequired();
 
+        builder.HasOne<User>()
+            .WithOne()
+            .HasForeignKey<Profile>(x => x.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.Property(x => x.Username)
             .IsRequired()
             .HasMaxLength(50);

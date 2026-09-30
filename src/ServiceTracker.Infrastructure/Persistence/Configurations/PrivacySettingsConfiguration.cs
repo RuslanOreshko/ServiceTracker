@@ -13,6 +13,9 @@ public class PrivacySettingsConfiguration : IEntityTypeConfiguration<PrivacySett
         builder.Property(x => x.UserId)
             .IsRequired();
 
+        builder.HasOne<User>()
+            .WithOne();
+
         builder.HasIndex(x => x.UserId)
             .IsUnique();
 

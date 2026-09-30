@@ -13,6 +13,11 @@ public class PeriodConfiguration : IEntityTypeConfiguration<Period>
         builder.Property(x => x.UserId)
             .IsRequired();
 
+        builder.HasOne<User>()
+            .WithMany()
+            .HasForeignKey(x => x.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         builder.Property(x => x.Type)
             .IsRequired();
 
