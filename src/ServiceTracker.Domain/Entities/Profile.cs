@@ -15,8 +15,8 @@ public class Profile
         Guid userId,
         string username,
         string displayName,
-        string? avatarUrl,
-        string? bio
+        string? avatarUrl = null,
+        string? bio= null
     )
     {
         if(userId == Guid.Empty)

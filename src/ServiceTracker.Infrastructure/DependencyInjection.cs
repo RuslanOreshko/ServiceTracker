@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServiceTracker.Application.Interfaces.Persistence;
+using ServiceTracker.Application.Interfaces.Services;
+using ServiceTracker.Infrastructure.Authentication;
 using ServiceTracker.Infrastructure.Persistence;
 using ServiceTracker.Infrastructure.Persistence.Repositories;
 
@@ -25,6 +27,8 @@ public static class DependencyInjection
         services.AddScoped<IUserRepositories, UserRepository>();
         services.AddScoped<IProfileRepositories, ProfileRepository>();
         services.AddScoped<IPrivacySettingsRepository, PrivacySettingsRepository>();
+
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
 
         return services;
     }
