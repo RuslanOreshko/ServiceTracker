@@ -22,6 +22,8 @@ public class PrivacySettings
         if(userId == Guid.Empty)
             throw new ArgumentException("User ID cannot be empty.", nameof(userId));
 
+        UserId = userId;
+
         ShowDisplayName = true;
         ShowAvatar = true;
         ShowBio = true;

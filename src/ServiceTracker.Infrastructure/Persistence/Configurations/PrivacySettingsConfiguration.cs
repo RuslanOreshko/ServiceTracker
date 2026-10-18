@@ -14,7 +14,9 @@ public class PrivacySettingsConfiguration : IEntityTypeConfiguration<PrivacySett
             .IsRequired();
 
         builder.HasOne<User>()
-            .WithOne();
+            .WithOne()
+            .HasForeignKey<PrivacySettings>(x => x.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasIndex(x => x.UserId)
             .IsUnique();
@@ -45,5 +47,6 @@ public class PrivacySettingsConfiguration : IEntityTypeConfiguration<PrivacySett
 
         builder.Property(x => x.ShowEvent)
             .IsRequired();
+
     }
 }
