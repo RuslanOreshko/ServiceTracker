@@ -5,5 +5,5 @@ namespace ServiceTracker.Application.Interfaces.Persistence;
 
 public interface IPrivacySettingsRepository
 {
-    Task Add(PrivacySettings privacySettings, CancellationToken cancellationToken);
+    Task AddAsync(PrivacySettings privacySettings, CancellationToken cancellationToken);
 }

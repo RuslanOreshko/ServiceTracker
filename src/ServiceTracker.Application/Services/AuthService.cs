@@ -1,4 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
 using ServiceTracker.Application.DTOs.Auth;
 using ServiceTracker.Application.Interfaces.Persistence;
 using ServiceTracker.Application.Interfaces.Services;
@@ -13,12 +12,14 @@ public class AuthService : IAuthService
     private readonly IProfileRepositories _profileRepository;
     private readonly IPrivacySettingsRepository _privacySettingsRepository;
     private readonly IPasswordHasher _passwordHasher;
+    private readonly IApplicationDbContext _dbContext;
 
     public AuthService(
         IUserRepositories userRepositories,
         IProfileRepositories profileRepositories,
         IPrivacySettingsRepository privacySettingsRepository,
-        IPasswordHasher passwordHasher
+        IPasswordHasher passwordHasher,
+        IApplicationDbContext dbContext
     )
     {
         _userRepository = userRepositories;
@@ -26,6 +27,8 @@ public class AuthService : IAuthService
         _privacySettingsRepository = privacySettingsRepository;
 
         _passwordHasher = passwordHasher;
+
+        _dbContext = dbContext;
     }
 
     public async Task<RegisterResponse> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken)
@@ -64,9 +67,9 @@ public class AuthService : IAuthService
 
         var privacySettings = new PrivacySettings(user.Id);
 
-        await _privacySettingsRepository.Add(privacySettings, cancellationToken);
+        await _privacySettingsRepository.AddAsync(privacySettings, cancellationToken);
 
-        // ОБОВЯЗКОВО ДОДАТИ SaveChange();
+        await _dbContext.SaveChangesAsync(cancellationToken);
 
         return new RegisterResponse
         {

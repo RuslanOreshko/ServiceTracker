@@ -15,7 +15,7 @@ public class PrivacySettingsRepository : IPrivacySettingsRepository
         _dbContext = dbContext;
     }
 
-    public async Task Add(PrivacySettings privacySettings, CancellationToken cancellationToken)
+    public async Task AddAsync(PrivacySettings privacySettings, CancellationToken cancellationToken)
     {
         await _dbContext.PrivacySettings
             .AddAsync(privacySettings, cancellationToken);

@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using ServiceTracker.Application.Interfaces.Persistence;
 using ServiceTracker.Domain.Entities;
 
 namespace ServiceTracker.Infrastructure.Persistence;
 
-public class ServiceTrackerDbContext : DbContext
+public class ServiceTrackerDbContext :
+     DbContext, 
+     IApplicationDbContext
 {
     public ServiceTrackerDbContext(DbContextOptions<ServiceTrackerDbContext> options) : base(options)
     {}

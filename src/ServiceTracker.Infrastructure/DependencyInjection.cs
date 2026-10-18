@@ -24,6 +24,9 @@ public static class DependencyInjection
             );
         });
 
+        services.AddScoped<IApplicationDbContext>(provider => 
+            provider.GetRequiredService<ServiceTrackerDbContext>());
+
         services.AddScoped<IUserRepositories, UserRepository>();
         services.AddScoped<IProfileRepositories, ProfileRepository>();
         services.AddScoped<IPrivacySettingsRepository, PrivacySettingsRepository>();
