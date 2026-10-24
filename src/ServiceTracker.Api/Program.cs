@@ -1,4 +1,5 @@
 using Scalar.AspNetCore;
+using ServiceTracker.Api.ExceptionHandling;
 using ServiceTracker.Application.Interfaces.Services;
 using ServiceTracker.Application.Services;
 using ServiceTracker.Infrastructure;
@@ -7,10 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddUserSecrets<Program>();
 
-Console.WriteLine(
-    $"Connection string loaded: " +
-    $"{!string.IsNullOrWhiteSpace(builder.Configuration.GetConnectionString("DefaultConnection"))}");
-    
+builder.Services.AddExceptionHandler<GlobalExceptionHandling>();
 builder.Services.AddProblemDetails();
 
 builder.Services.AddOpenApi();
@@ -25,12 +23,9 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler();
-}
 
 
+app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {

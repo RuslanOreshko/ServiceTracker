@@ -1,4 +1,5 @@
 using ServiceTracker.Application.DTOs.Auth;
+using ServiceTracker.Application.Exceptions;
 using ServiceTracker.Application.Interfaces.Persistence;
 using ServiceTracker.Application.Interfaces.Services;
 using ServiceTracker.Domain.Entities;
@@ -38,10 +39,10 @@ public class AuthService : IAuthService
         var usernameExists = await _profileRepository.ExistsByUsernameAsync(request.Username, cancellationToken);
 
         if(existsEmail)
-            throw new InvalidOperationException("User with this email alredy exists.");
+            throw new EmailAlredyExistsException();
         
         if(usernameExists)
-            throw new InvalidOperationException("User with this Username alredy exists.");
+            throw new UsernameAlredyExistsException();
 
         
         // Password hashing
